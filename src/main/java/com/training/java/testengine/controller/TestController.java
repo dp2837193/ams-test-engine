@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/test")
+@RequestMapping("/abc")
 @CrossOrigin(value = "*", allowedHeaders = "*")
 public class TestController {
 
@@ -49,5 +49,10 @@ public class TestController {
     @GetMapping("/{testId}/question")
     public ResponseEntity<List<TestQuestionEntity>> getTestQuestionsByTestId(@PathVariable("testId") Integer testId){
         return testService.getTestQuestions(testId);
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<TestEntity>> searchTests(@RequestParam("searchKey") String searchKey){
+        return testService.searchTestsWithKey(searchKey);
     }
 }
